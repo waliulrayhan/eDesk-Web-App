@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2023 at 06:50 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: May 11, 2023 at 08:13 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,16 +31,18 @@ CREATE TABLE `adminaddoffice` (
   `id` int(20) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `adminaddoffice`
 --
 
 INSERT INTO `adminaddoffice` (`id`, `title`, `description`) VALUES
-(1, 'hfgh hfgth', 'fgfljk'),
-(2, 'cse office', 'r rt t rewt ret '),
-(3, 'jnu office', 'wser we twe4 wer');
+(5, 'Vice-Chancellor Office', 'This is for vc Office'),
+(6, 'Audit Cell', 'This is under in VC Office'),
+(7, 'Treasurer Office', 'Treasurer Office'),
+(8, 'Dean Office', 'Dean Office'),
+(9, 'Registrar Office', 'Registrar Office');
 
 -- --------------------------------------------------------
 
@@ -52,7 +54,7 @@ CREATE TABLE `adminmanagement` (
   `id` int(20) NOT NULL,
   `userid` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `adminmanagement`
@@ -78,21 +80,14 @@ CREATE TABLE `post` (
   `user_id` int(20) NOT NULL,
   `type` varchar(255) NOT NULL,
   `date_time` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `post`
 --
 
 INSERT INTO `post` (`id`, `title`, `body`, `picture`, `office_id`, `author_id`, `user_id`, `type`, `date_time`) VALUES
-(1, 'Rouddra fuck nahid', 'tewfuyerw iu yriuuiewyoyeoi  u eu eyuiewyru ', '168370257420230209_145053.jpg', 3, 0, 6, 'Complain', '2023-05-10 13:22:53'),
-(2, 'nishat fuck asif', 'ewfew  i ouoe e erwuir', '168370265020230209_145053.jpg', 2, 0, 6, 'Complain', '2023-05-10 13:22:53'),
-(3, 'regfgdf', 'dsgfdgfdgfdg r r g', '16837027391675267474219.jpg', 2, 0, 6, 'Suggestion', '2023-05-10 13:22:53'),
-(4, 'fgr regtr tr ', 'ert ret rere re', '16837028101664598142908.jpg', 2, 0, 6, 'Request', '2023-05-10 13:22:53'),
-(5, 'ehwtfewfw f', 'ew fewf e eww ', '1683702975201187167_1143761759700989_24436171607090174_n.jpg', 2, 0, 0, 'Admin', '2023-05-10 13:22:53'),
-(6, 'fdg rdg', 'r rere rete', '1683703112IMG_20210722_174944.jpg', 2, 0, 0, 'Admin', '2023-05-10 13:22:53'),
-(7, 'uytutyuyt', 'tyu tyu tyu ytuty', '1683725095119259549_3441740135891285_5227993086288146132_n.jpg', 2, 0, 0, 'Admin', '2023-05-10 13:24:55'),
-(8, 'edger ert tey', 'er er ert tyt e', '1683738390a00AA6C.jpg', 2, 1, 0, 'Admin', '2023-05-10 17:06:30');
+(9, 'ঠিক মতো কাজ হচ্ছে না ডিন অফিসে।', 'gfdgdgxgggggggggggggggggggggggggg dgx hfccccccer fchr r trttertrttjh jreukyh kgukhukghuk uk ytkr ytukery tukeryuk eruktrbu  reioertuoyeruiy feyier tit ri7ewtrie tifsdkfg sdyrtw7i rtew8 ydhkadgc hjadg fuiewyf ioeudoiqwy dhjsbc mhdgh fliewuf oiewu fukegfkecmh c egd fkuad gkdaehe dkuewh fukdbfhk geaku fhew ukgf dmhad gf kuewf ds gdm usdf kue hd cjsd d i e ', '16837814571675267474219.jpg', 5, 1, 0, 'Admin', '2023-05-11 05:04:17');
 
 -- --------------------------------------------------------
 
@@ -109,7 +104,7 @@ CREATE TABLE `usermanagement` (
   `password` varchar(255) NOT NULL,
   `picture` varchar(255) NOT NULL,
   `stat` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `usermanagement`
@@ -155,7 +150,7 @@ ALTER TABLE `usermanagement`
 -- AUTO_INCREMENT for table `adminaddoffice`
 --
 ALTER TABLE `adminaddoffice`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `adminmanagement`
@@ -167,7 +162,7 @@ ALTER TABLE `adminmanagement`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `usermanagement`
