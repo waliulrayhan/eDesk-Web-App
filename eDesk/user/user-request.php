@@ -1,6 +1,12 @@
 <?php
 include 'partials/header.php';
 
+// Find current User
+$current_user_id = $_SESSION['user-id'];
+$query2 = "SELECT * from usermanagement WHERE id=$current_user_id";
+$result = mysqli_query($connection, $query2);
+$finduser = mysqli_fetch_assoc($result);
+
 // fetch categories from database
 $query = "SELECT * FROM adminaddoffice";
 $categories = mysqli_query($connection, $query);
@@ -27,7 +33,7 @@ unset($_SESSION['user-request-data']);
             </div>
         <?php endif ?>
         <form action="<?= ROOT_URL ?>user/user-request-logic.php" enctype="multipart/form-data" method="POST">
-            <input type="text" name="title" value="<?= $title ?>" placeholder="Title">
+            <input type="text" name="title" value="<?= $finduser['userid'] ?>" placeholder="Title" readonly>
             <select name="category">
                 <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
                     <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>

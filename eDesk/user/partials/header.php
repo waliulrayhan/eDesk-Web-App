@@ -27,7 +27,10 @@ if (isset($_SESSION['user-id'])) {
 
     <!-- Data Table -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
-    
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+
 </head>
 
 <body>
@@ -37,7 +40,7 @@ if (isset($_SESSION['user-id'])) {
             <ul class="nav__items">
                 <li><a href="<?= ROOT_URL ?>about.php">About</a></li>
                 <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
-                <?php if (isset($_SESSION['user-id'])): ?>
+                <?php if (isset($_SESSION['user-id'])) : ?>
                     <li class="nav__profile">
                         <div class="avatar">
                             <img src="<?= ROOT_URL . 'images/' . $picture['picture'] ?>">
@@ -51,7 +54,7 @@ if (isset($_SESSION['user-id'])) {
                             <li><a href="<?= ROOT_URL ?>logout.php">Logout</a></li>
                         </ul>
                     </li>
-                <?php else: ?>
+                <?php else : ?>
                     <li><a href="<?= ROOT_URL ?>signin.php">SignIn</a></li>
                 <?php endif ?>
             </ul>

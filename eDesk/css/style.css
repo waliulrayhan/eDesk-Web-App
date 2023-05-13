@@ -51,10 +51,20 @@ body {
     font-size: 0.9rem;
 }
 
+.square {
+    width: 150px;
+    height: 150px;
+    background-color: lightblue;
+  }
+
 .container {
     width: var(--container-width-lg);
     max-width: 1800px;
     margin-inline: auto;
+}
+
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
 section {
@@ -487,7 +497,9 @@ form {
     align-items: center;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
     padding: 0.8rem 1.4rem;
     background-color: var(--color-gray-900);
     border-radius: var(--card-border-radius-2);

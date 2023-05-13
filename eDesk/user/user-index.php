@@ -1,200 +1,58 @@
 <?php
 include 'partials/header.php';
+
+// fetch 9 posts from posts table
+$query = "SELECT * FROM post WHERE type='Complain: C-' or type='Suggestion: S-' or type='Request: R-' ORDER BY date_time DESC LIMIT 9";
+$posts = mysqli_query($connection, $query);
+
+
 ?>
 
-
-<section class="featured">
-    <div class="container featured__container">
-        <div class="post__thumbnail">
-            <img src="./images/blog1.jpg">
-        </div>
-        <div class="post__info">
-            <a href="category-posts.html" class="category__button">Wild Life</a>
-            <h2 class="post__title"><a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Minima, expedita?</a></h2>
-            <p class="post__body">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas provident magnam quis tenetur
-                cupiditate saepe voluptatem ab? Unde maxime saepe quidem sint vel quae delectus illo, nulla
-                voluptas! Minus, repudiandae.
-            </p>
-            <div class="post__author">
-                <div class="post__author-avatar">
-                    <img src="./images/avatar2.jpg">
-                </div>
-                <div class="post__author-info">
-                    <h5>By: Jane Doe</h5>
-                    <small>June 10, 2022 - 07:23</small>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ============= END OF FEATURED ============= -->
+</br>
+</br>
+</br>
 
 
-<section class="posts">
+<section class="posts <?= $featured ? '' : 'section__extra-margin' ?>">
     <div class="container posts__container">
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="./images/blog3.jpg">
-            </div>
-            <div class="post__info">
-                <a href="category-posts.html" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, rerum?</a>
-                </h3>
-                <p class="post__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo maxime veritatis, ducimus fugiat
-                    minima tenetur asperiores commodi ab odio et?
+        <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
+            <article class="post">
+                <!-- <div class="post__thumbnail">
+                    <img src="<?= ROOT_URL . 'images/' . $post['picture'] ?>" width="400" height="200">
+                </div> -->
+                <div class="post__info">
+                    <?php
+                    // fetch category from categories table using category_id of post
+                    $category_id = $post['office_id'];
+                    $category_query = "SELECT * FROM adminaddoffice WHERE id=$category_id";
+                    $category_result = mysqli_query($connection, $category_query);
+                    $category = mysqli_fetch_assoc($category_result);
+                    ?>
+                    <h3><?= $post['type'] ?><?= $post['id'] ?></h3>
+                    <a href="<?= ROOT_URL ?>user/category-posts.php?id=<?= $post['office_id'] ?>" class="category__button"><?= $category['title'] ?></a>
+                    <h4 class="post__title">
+                        <!-- <a href="<?= ROOT_URL ?>post.php?id=<?= $post['id'] ?>"><?= $post['title'] ?></a> -->
+                        <?= date("d M Y - H:i", strtotime($post['date_time'])) ?>
+                    </h4>
+                    </br>
+                    <p class="post__body">
+                        <?php $len = strlen($post['body']); ?>
+                        <?php if ($len < 150) : ?>
+                            <a href="<?= ROOT_URL ?>user/details-post.php?id=<?= $post['id'] ?>"><?= $post['body'] ?></a>
+                        <?php else : ?>
+                            <?= substr($post['body'], 0, 150) ?>
+                    <h5><a href="<?= ROOT_URL ?>user/details-post.php?id=<?= $post['id'] ?>">See more...</a></h5>
+                <?php endif ?>
+
                 </p>
                 <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="./images/avatar4.jpg">
-                    </div>
                     <div class="post__author-info">
-                        <h5>By: John Mills</h5>
-                        <small>June 13, 2022 - 10:34</small>
+                        <h5>Status: We have received your suggestion</h5>
                     </div>
                 </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="./images/blog4.jpg">
-            </div>
-            <div class="post__info">
-                <a href="category-posts.html" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, rerum?</a>
-                </h3>
-                <p class="post__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo maxime veritatis, ducimus fugiat
-                    minima tenetur asperiores commodi ab odio et?
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="./images/avatar5.jpg">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>By: John Mills</h5>
-                        <small>June 13, 2022 - 10:34</small>
-                    </div>
                 </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="./images/blog5.jpg">
-            </div>
-            <div class="post__info">
-                <a href="category-posts.html" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, rerum?</a>
-                </h3>
-                <p class="post__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo maxime veritatis, ducimus fugiat
-                    minima tenetur asperiores commodi ab odio et?
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="./images/avatar6.jpg">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>By: John Mills</h5>
-                        <small>June 13, 2022 - 10:34</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="./images/blog6.jpg">
-            </div>
-            <div class="post__info">
-                <a href="category-posts.html" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, rerum?</a>
-                </h3>
-                <p class="post__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo maxime veritatis, ducimus fugiat
-                    minima tenetur asperiores commodi ab odio et?
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="./images/avatar7.jpg">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>By: John Mills</h5>
-                        <small>June 13, 2022 - 10:34</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="./images/blog7.jpg">
-            </div>
-            <div class="post__info">
-                <a href="category-posts.html" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, rerum?</a>
-                </h3>
-                <p class="post__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo maxime veritatis, ducimus fugiat
-                    minima tenetur asperiores commodi ab odio et?
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="./images/avatar8.jpg">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>By: John Mills</h5>
-                        <small>June 13, 2022 - 10:34</small>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post__thumbnail">
-                <img src="./images/blog8.jpg">
-            </div>
-            <div class="post__info">
-                <a href="category-posts.html" class="category__button">Wild Life</a>
-                <h3 class="post__title">
-                    <a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, rerum?</a>
-                </h3>
-                <p class="post__body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo maxime veritatis, ducimus fugiat
-                    minima tenetur asperiores commodi ab odio et?
-                </p>
-                <div class="post__author">
-                    <div class="post__author-avatar">
-                        <img src="./images/avatar9.jpg">
-                    </div>
-                    <div class="post__author-info">
-                        <h5>By: John Mills</h5>
-                        <small>June 13, 2022 - 10:34</small>
-                    </div>
-                </div>
-            </div>
-        </article>
+            </article>
+        <?php endwhile ?>
     </div>
 </section>
 <!-- ============= END OF POSTS ============= -->
-
-
-<section class="category__buttons">
-    <div class="container category__buttons-container">
-        <a href="" class="category__button">Art</a>
-        <a href="" class="category__button">Wild Life</a>
-        <a href="" class="category__button">Travel</a>
-        <a href="" class="category__button">Science & Technology</a>
-        <a href="" class="category__button">Food</a>
-        <a href="" class="category__button">Music</a>
-    </div>
-</section>
-<!-- ============= END OF CATEGORY BUTTONS ============= -->
-
-<!-- <?php
-include 'partials/footer.php';
-?> -->

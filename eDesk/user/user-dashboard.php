@@ -72,7 +72,7 @@ $posts = mysqli_query($connection, $query);
             <table id='table'>
                 <thead>
                     <tr align='center'>
-                        <th>Title</th>
+                        <th>User ID</th>
                         <th>Against Office</th>
                         <th>Description</th>
                         <th>Action</th>

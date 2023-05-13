@@ -3,7 +3,7 @@ include 'partials/header.php';
 
 // fetch current user's posts from database
 $current_user_id = $_SESSION['admin-id'];
-$query = "SELECT id, title, office_id, body, type FROM post WHERE author_id=$current_user_id ORDER BY id DESC";
+$query = "SELECT id, title, office_id, body, status, type FROM post WHERE user_id!=0 and status='pending' ORDER BY id DESC";
 $posts = mysqli_query($connection, $query);
 ?>
 
@@ -15,6 +15,16 @@ $posts = mysqli_query($connection, $query);
             <p>
                 <?= $_SESSION['add-post-success'];
                 unset($_SESSION['add-post-success']);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
+    <?php if (isset($_SESSION['active-post-success'])) : // shows if add post was successful 
+    ?>
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION['active-post-success'];
+                unset($_SESSION['active-post-success']);
                 ?>
             </p>
         </div>
@@ -57,14 +67,15 @@ $posts = mysqli_query($connection, $query);
             </ul>
         </aside>
         <main>
-            <h2>Manage Your Own Posts</h2>
+            <h2>Manage Users Posts</h2>
             <table id="table">
                 <thead>
                     <tr>
-                        <th>Title</th>
+                        <th>User ID</th>
                         <th>Against Office</th>
                         <th>Descriprion</th>
                         <th>Department</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -90,7 +101,10 @@ $posts = mysqli_query($connection, $query);
                             <td>
                                 <?= $post['type'] ?>
                             </td>
-                            <td align="center"><a href="<?= ROOT_URL ?>admin/admin-edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Edit</a> <a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Delete</a></td>
+                            <td>
+                                <?= $post['status'] ?>
+                            </td>
+                            <td align="center"><a href="<?= ROOT_URL ?>admin/admin-manage-users-post-active.php?id=<?= $post['id'] ?>" class="btn sm">Approve</a> <a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Delete</a></td>
                         </tr>
                     <?php endwhile ?>
                 </tbody>

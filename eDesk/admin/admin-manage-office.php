@@ -42,7 +42,12 @@ $offices = mysqli_query($connection, $query);
                 </li>
                 <li>
                     <a href="admin-manage-post.php"><i class="uil uil-users-alt"></i>
-                        <h5>Manage Post</h5>
+                        <h5>Manage Your Post</h5>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-manage-users-post.php"><i class="uil uil-users-alt"></i>
+                        <h5>Manage Users Post</h5>
                     </a>
                 </li>
                 <li>

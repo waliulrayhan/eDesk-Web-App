@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
         <form action="<?= ROOT_URL ?>user/user-edit-post-logic.php" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="id" value="<?= $post['id'] ?>">
             <input type="hidden" name="previous_picture_name" value="<?= $post['picture'] ?>">
-            <input type="text" name="title" value="<?= $post['title'] ?>" placeholder="Title">
+            <input type="text" name="title" value="<?= $post['title'] ?>" placeholder="Title" readonly>
             <select name="category">
                 <?php while ($category = mysqli_fetch_assoc($categories)) : ?>
                     <option value="<?= $category['id'] ?>"><?= $category['title'] ?></option>
