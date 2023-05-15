@@ -10,8 +10,8 @@ $offices = mysqli_query($connection, $query);
 
 
 <section class="dashboard">
-    <?php if (isset($_SESSION['edit-office-success'])) :  // shows if add post was successful 
-    ?>
+    <?php if (isset($_SESSION['edit-office-success'])): // shows if add post was successful 
+            ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-office-success'];
@@ -68,11 +68,23 @@ $offices = mysqli_query($connection, $query);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($office = mysqli_fetch_assoc($offices)) : ?>
+                    <?php while ($office = mysqli_fetch_assoc($offices)): ?>
                         <tr>
-                            <td><?= $office['title'] ?></td>
-                            <td><?= $office['description'] ?></td>
-                            <td align="center"><a href="<?= ROOT_URL ?>admin/edit-office.php?id=<?= $office['id'] ?>" class="btn sm">Edit</a> <a href="<?= ROOT_URL ?>admin/delete-user-logic.php?id=<?= $office['id'] ?>" class="btn sm danger">Delete</a></td>
+                            <td>
+                                <?= $office['title'] ?>
+                            </td>
+                            <td>
+                                <?php $len = strlen($office['description']); ?>
+                                <?php if ($len < 30): ?>
+                                    <?= $office['description'] ?>
+                                <?php else: ?>
+                                    <?= substr($office['description'], 0, 25) ?>...
+                                <?php endif ?>
+                            </td>
+                            <td align="center"><a href="<?= ROOT_URL ?>admin/edit-office.php?id=<?= $office['id'] ?>"
+                                    class="btn sm">Edit</a> <a
+                                    href="<?= ROOT_URL ?>admin/delete-user-logic.php?id=<?= $office['id'] ?>"
+                                    class="btn sm danger">Delete</a></td>
                         </tr>
                     <?php endwhile ?>
                 </tbody>

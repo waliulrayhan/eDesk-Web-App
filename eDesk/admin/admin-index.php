@@ -2,7 +2,7 @@
 include 'partials/header.php';
 
 // fetch 9 posts from posts table
-$query = "SELECT * FROM post ORDER BY date_time DESC LIMIT 9";
+$query = "SELECT * FROM post WHERE status='ok' ORDER BY date_time DESC LIMIT 9";
 $posts = mysqli_query($connection, $query);
 
 ?>
@@ -16,7 +16,7 @@ $posts = mysqli_query($connection, $query);
 
 <section class="posts <?= $featured ? '' : 'section__extra-margin' ?>">
     <div class="container posts__container">
-        <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
+        <?php while ($post = mysqli_fetch_assoc($posts)): ?>
             <article class="post">
                 <div class="post__thumbnail">
                     <img src="<?= ROOT_URL . 'images/' . $post['picture'] ?>" width="400" height="200">
@@ -30,39 +30,48 @@ $posts = mysqli_query($connection, $query);
                     $category = mysqli_fetch_assoc($category_result);
                     ?>
                     <h3>
-                        <?= $post['type'] ?><?= $post['id'] ?>
+                        <?= $post['type'] ?>
+                        <?= $post['id'] ?>
                         </br>
                         <small>
                             <?= date("d M Y - H:i", strtotime($post['date_time'])) ?>
                         </small>
                     </h3>
-                    <a href="<?= ROOT_URL ?>admin/admin-catagory-post.php?id=<?= $post['office_id'] ?>" class="category__button"><?= $category['title'] ?></a>
+                    <a href="<?= ROOT_URL ?>admin/admin-catagory-post.php?id=<?= $post['office_id'] ?>"
+                        class="category__button"><?= $category['title'] ?></a>
                     </br>
                     </br>
                     <p class="post__body">
-                        <?php if ($post['author_id']) : ?> <!-- Find any admin Post. -->
+                        <?php if ($post['author_id']): ?> <!-- Find any admin Post. -->
                         <h4>
                             <?= $post['title'] ?>
                         </h4>
 
                         <?php $len = strlen($post['body']); ?>
-                        <?php if ($len < 150) : ?>
+                        <?php if ($len < 150): ?>
                             <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>"><?= $post['body'] ?></a>
-                        <?php else : ?>
+                        <?php else: ?>
                             <?= substr($post['body'], 0, 150) ?>
-                        <h5>
-                            <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">See more...</a>
-                        </h5>
+                            <h5>
+                                <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">See more...</a>
+                            </h5>
                         <?php endif ?>
 
-                    </p>
-                    <div class="post__author">
-                        <div class="post__author-info">
-                            <h5><a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">Add Comment or Reply</a></h5>
+                        </p>
+                        <div class="post__author">
+                            <div class="post__author-info">
+                                <?php if ($post['comment']): ?>
+                                    <h5>Status:
+                                        <?= $post['comment'] ?>
+                                    </h5>
+                                <?php else: ?>
+                                    <h5><a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">Add Comment or
+                                            Reply</a></h5>
+                                <?php endif ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php else : ?>
+                <?php else: ?>
                     <?php
                     // fetch user from usermanagement table using user_id of post
                     $user_id = $post['user_id'];
@@ -70,34 +79,44 @@ $posts = mysqli_query($connection, $query);
                     $user_result = mysqli_query($connection, $user_query);
                     $user = mysqli_fetch_assoc($user_result);
                     ?>
-                <h4>
-                    User ID: <?= $user['userid'] ?>
-                </h4>
-                <h4>
-                    Name: <?= $user['firstname'] ?> <?= $user['lastname'] ?>
-                </h4>
+                    <h4>
+                        User ID:
+                        <?= $user['userid'] ?>
+                    </h4>
+                    <h4>
+                        Name:
+                        <?= $user['firstname'] ?>
+                        <?= $user['lastname'] ?>
+                    </h4>
 
-                <?php $len = strlen($post['body']); ?>
-                <?php if ($len < 150) : ?>
-                    <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>"><?= $post['body'] ?></a>
-                <?php else : ?>
-                    <?= substr($post['body'], 0, 150) ?>
-                    <h5>
-                        <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">See more...</a>
-                    </h5>
-                <?php endif ?>
+                    <?php $len = strlen($post['body']); ?>
+                    <?php if ($len < 150): ?>
+                        <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>"><?= $post['body'] ?></a>
+                    <?php else: ?>
+                        <?= substr($post['body'], 0, 150) ?>
+                        <h5>
+                            <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">See more...</a>
+                        </h5>
+                    <?php endif ?>
 
-                </p>
-                <div class="post__author">
-                    <div class="post__author-info">
-                        <h5><a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">Add Comment or Reply</a></h5>
+                    </p>
+                    <div class="post__author">
+                        <div class="post__author-info">
+                            <?php if ($post['comment']): ?>
+                                <h5>Status:
+                                    <?= $post['comment'] ?>
+                                </h5>
+                            <?php else: ?>
+                                <h5><a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">Add Comment or Reply</a>
+                                </h5>
+                            <?php endif ?>
+                        </div>
                     </div>
-                </div>
+            </div>
+        <?php endif ?>
+        </article>
+    <?php endwhile ?>
     </div>
-<?php endif ?>
-</article>
-<?php endwhile ?>
-</div>
 </section>
 <!-- ============= END OF POSTS ============= -->
 

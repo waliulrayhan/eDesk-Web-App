@@ -58,7 +58,7 @@ body {
   }
 
 .container {
-    width: var(--container-width-lg);
+    width: 90%;
     max-width: 1800px;
     margin-inline: auto;
 }

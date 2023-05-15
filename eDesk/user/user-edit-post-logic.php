@@ -10,8 +10,6 @@ if (isset($_POST['submit'])) {
     $category_id = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
     $picture = $_FILES['picture'];
 
-    // set is_featured to 0 if it was unchecked
-    $is_featured = $is_featured == 1 ?: 0;
 
     // check and validate input values
     if (!$title) {
@@ -45,10 +43,10 @@ if (isset($_POST['submit'])) {
                     // upload picture
                     move_uploaded_file($picture_tmp_name, $picture_destination_path);
                 } else {
-                    $_SESSION['edit-post'] = "Couldn't update post. Picture size is too large, should be less than 2 MB";
+                    $_SESSION['edit-post'] = "Couldn't update post. picture size is too large, should be less than 2 MB";
                 }
             } else {
-                $_SESSION['edit-post'] = "Couldn't update post. Picture should be png jpg or jpeg";
+                $_SESSION['edit-post'] = "Couldn't update post. picture should be png jpg or jpeg";
             }
         }
     }
@@ -59,16 +57,11 @@ if (isset($_POST['submit'])) {
         header('location: ' . ROOT_URL . 'admin/');
         die();
     } else {
-        // set is_featured of all posts to 0 if is_featured for this post is 1
-        if ($is_featured == 1) {
-            $zero_all_is_featured_query = "UPDATE posts SET is_featured=0";
-            $zero_all_is_featured_result = mysqli_query($connection, $zero_all_is_featured_query);
-        }
 
         // set picture name if a new one was uploaded, else keep the old picture name
-        $picture_to_insert = $picture_name ?? $picture_thumbnail_name;
+        $picture_to_insert = $picture_name ?? $previous_picture_name;
 
-        $query = "UPDATE post SET title='$title', body='$body', thumbnail='$picture_to_insert', category_id=$category_id, is_featured=$is_featured WHERE id=$id LIMIT 1";
+        $query = "UPDATE post SET title='$title', body='$body', picture='$picture_to_insert', office_id=$category_id, status='pending' WHERE id=$id LIMIT 1";
         $result = mysqli_query($connection, $query);
     }
 
@@ -77,5 +70,5 @@ if (isset($_POST['submit'])) {
     }
 }
 
-header('location: ' . ROOT_URL . 'admin/');
+header('location: ' . ROOT_URL . 'user/user-index.php');
 die();

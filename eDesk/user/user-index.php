@@ -2,7 +2,7 @@
 include 'partials/header.php';
 
 // fetch 9 posts from posts table
-$query = "SELECT * FROM post WHERE type='Complain: C-' or type='Suggestion: S-' or type='Request: R-' ORDER BY date_time DESC LIMIT 9";
+$query = "SELECT * FROM post WHERE status='ok' AND user_id != '0' ORDER BY date_time DESC LIMIT 9";
 $posts = mysqli_query($connection, $query);
 
 
@@ -37,17 +37,17 @@ $posts = mysqli_query($connection, $query);
                     </br>
                     <p class="post__body">
                         <?php $len = strlen($post['body']); ?>
-                        <?php if ($len < 150) : ?>
+                        <?php if ($len < 50) : ?>
                             <a href="<?= ROOT_URL ?>user/details-post.php?id=<?= $post['id'] ?>"><?= $post['body'] ?></a>
                         <?php else : ?>
-                            <?= substr($post['body'], 0, 150) ?>
+                            <?= substr($post['body'], 0, 50) ?>
                     <h5><a href="<?= ROOT_URL ?>user/details-post.php?id=<?= $post['id'] ?>">See more...</a></h5>
                 <?php endif ?>
 
                 </p>
                 <div class="post__author">
                     <div class="post__author-info">
-                        <h5>Status: We have received your suggestion</h5>
+                        <h5>Status: <?= $post['comment'] ?></h5>
                     </div>
                 </div>
                 </div>

@@ -3,7 +3,7 @@ include 'partials/header.php';
 
 // fetch current user's posts from database
 $current_user_id = $_SESSION['admin-id'];
-$query = "SELECT id, title, office_id, body, status, type FROM post WHERE user_id!=0 and status='pending' ORDER BY id DESC";
+$query = "SELECT id, title, office_id, body, status, type, post_type FROM post WHERE user_id!=0 and status='pending' ORDER BY id DESC";
 $posts = mysqli_query($connection, $query);
 ?>
 
@@ -70,11 +70,11 @@ $posts = mysqli_query($connection, $query);
             <h2>Manage Users Posts</h2>
             <table id="table">
                 <thead>
-                    <tr>
+                    <tr align="center">
                         <th>User ID</th>
                         <th>Against Office</th>
                         <th>Descriprion</th>
-                        <th>Department</th>
+                        <th>Post Type</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -96,10 +96,15 @@ $posts = mysqli_query($connection, $query);
                                 <?= $category['title'] ?>
                             </td>
                             <td>
-                                <?= substr($post['body'], 0, 150) ?>...
+                                <?php $len = strlen($post['body']); ?>
+                                <?php if ($len < 30): ?>
+                                    <?= $post['body'] ?>
+                                <?php else: ?>
+                                    <?= substr($post['body'], 0, 25) ?>...
+                                <?php endif ?>
                             </td>
                             <td>
-                                <?= $post['type'] ?>
+                                <?= $post['post_type'] ?>
                             </td>
                             <td>
                                 <?= $post['status'] ?>

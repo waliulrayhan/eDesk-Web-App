@@ -3,7 +3,7 @@ include 'partials/header.php';
 
 // fetch current user's posts from database
 $current_user_id = $_SESSION['user-id'];
-$query = "SELECT id, title, office_id, body FROM post WHERE user_id=$current_user_id ORDER BY id DESC";
+$query = "SELECT id, title, office_id, body, post_type FROM post WHERE user_id=$current_user_id ORDER BY id DESC";
 $posts = mysqli_query($connection, $query);
 ?>
 
@@ -75,6 +75,7 @@ $posts = mysqli_query($connection, $query);
                         <th>User ID</th>
                         <th>Against Office</th>
                         <th>Description</th>
+                        <th>Post Type</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -95,7 +96,15 @@ $posts = mysqli_query($connection, $query);
                                 <?= $category['title'] ?>
                             </td>
                             <td>
-                                <?= $post['body'] ?>
+                                <?php $len = strlen($post['body']); ?>
+                                <?php if ($len < 30): ?>
+                                    <?= $post['body'] ?>
+                                <?php else: ?>
+                                    <?= substr($post['body'], 0, 25) ?>...
+                                <?php endif ?>
+                            </td>
+                            <td>
+                            <?= $post['post_type'] ?>
                             </td>
                             <td align="center"><a href="<?= ROOT_URL ?>user/user-edit-post.php?id=<?= $post['id'] ?>"
                                     class="btn sm">Edit</a> <a

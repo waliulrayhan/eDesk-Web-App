@@ -3,14 +3,14 @@ include 'partials/header.php';
 
 // fetch current user's posts from database
 $current_user_id = $_SESSION['admin-id'];
-$query = "SELECT id, title, office_id, body, type FROM post WHERE author_id=$current_user_id ORDER BY id DESC";
+$query = "SELECT id, title, office_id, body, type, post_type FROM post WHERE author_id=$current_user_id ORDER BY id DESC";
 $posts = mysqli_query($connection, $query);
 ?>
 
 
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-post-success'])) : // shows if add post was successful 
-    ?>
+    <?php if (isset($_SESSION['add-post-success'])): // shows if add post was successful 
+            ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['add-post-success'];
@@ -64,12 +64,12 @@ $posts = mysqli_query($connection, $query);
                         <th>Title</th>
                         <th>Against Office</th>
                         <th>Descriprion</th>
-                        <th>Department</th>
+                        <th>Post Type</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
+                    <?php while ($post = mysqli_fetch_assoc($posts)): ?>
                         <!-- get category title of each post from categories table -->
                         <?php
                         $category_id = $post['office_id'];
@@ -85,12 +85,20 @@ $posts = mysqli_query($connection, $query);
                                 <?= $category['title'] ?>
                             </td>
                             <td>
-                                <?= substr($post['body'], 0, 150) ?>...
+                                <?php $len = strlen($post['body']); ?>
+                                <?php if ($len < 30): ?>
+                                    <?= $post['body'] ?>
+                                <?php else: ?>
+                                    <?= substr($post['body'], 0, 25) ?>...
+                                <?php endif ?>
                             </td>
                             <td>
-                                <?= $post['type'] ?>
+                                <?= $post['post_type'] ?>
                             </td>
-                            <td align="center"><a href="<?= ROOT_URL ?>admin/admin-edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Edit</a> <a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Delete</a></td>
+                            <td align="center"><a href="<?= ROOT_URL ?>admin/admin-edit-post.php?id=<?= $post['id'] ?>"
+                                    class="btn sm">Edit</a> <a
+                                    href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>"
+                                    class="btn sm danger">Delete</a></td>
                         </tr>
                     <?php endwhile ?>
                 </tbody>
