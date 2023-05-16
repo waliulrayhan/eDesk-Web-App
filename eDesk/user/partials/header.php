@@ -38,8 +38,8 @@ if (isset($_SESSION['user-id'])) {
         <div class="container nav__container">
             <a href="<?= ROOT_URL ?>user/user-index.php" class="nav__logo">e-Desk</a>
             <ul class="nav__items">
-                <li><a href="<?= ROOT_URL ?>about.php">About</a></li>
-                <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
+                <li><a href="<?= ROOT_URL ?>user/about.php">About</a></li>
+                <li><a href="<?= ROOT_URL ?>user/contact.php">Contact</a></li>
                 <?php if (isset($_SESSION['user-id'])) : ?>
                     <li class="nav__profile">
                         <div class="avatar">
@@ -51,7 +51,7 @@ if (isset($_SESSION['user-id'])) {
                             <li><a href="<?= ROOT_URL ?>user/user-suggestion.php">Submit a Suggestion</a></li>
                             <li><a href="<?= ROOT_URL ?>user/user-request.php">Submit a Request</a></li>
                             <li><a href="<?= ROOT_URL ?>user/user-profile.php">Profile</a></li>
-                            <li><a href="<?= ROOT_URL ?>logout.php">Logout</a></li>
+                            <li><a href="<?= ROOT_URL ?>user/logout.php">Logout</a></li>
                         </ul>
                     </li>
                 <?php else : ?>

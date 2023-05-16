@@ -9,12 +9,32 @@ $posts = mysqli_query($connection, $query);
 
 
 <section class="dashboard">
-    <?php if (isset($_SESSION['add-post-success'])): // shows if add post was successful 
-            ?>
+    <?php if (isset($_SESSION['add-post-success'])) : // shows if add post was successful 
+    ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['add-post-success'];
                 unset($_SESSION['add-post-success']);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
+    <?php if (isset($_SESSION['edit-post-success'])) : // shows if add post was successful 
+    ?>
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION['edit-post-success'];
+                unset($_SESSION['edit-post-success']);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
+    <?php if (isset($_SESSION['delete-post-success'])) :  // shows if delete post was successful 
+    ?>
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION['delete-post-success'];
+                unset($_SESSION['delete-post-success']);
                 ?>
             </p>
         </div>
@@ -69,7 +89,7 @@ $posts = mysqli_query($connection, $query);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($post = mysqli_fetch_assoc($posts)): ?>
+                    <?php while ($post = mysqli_fetch_assoc($posts)) : ?>
                         <!-- get category title of each post from categories table -->
                         <?php
                         $category_id = $post['office_id'];
@@ -86,19 +106,16 @@ $posts = mysqli_query($connection, $query);
                             </td>
                             <td>
                                 <?php $len = strlen($post['body']); ?>
-                                <?php if ($len < 30): ?>
+                                <?php if ($len < 30) : ?>
                                     <?= $post['body'] ?>
-                                <?php else: ?>
+                                <?php else : ?>
                                     <?= substr($post['body'], 0, 25) ?>...
                                 <?php endif ?>
                             </td>
                             <td>
                                 <?= $post['post_type'] ?>
                             </td>
-                            <td align="center"><a href="<?= ROOT_URL ?>admin/admin-edit-post.php?id=<?= $post['id'] ?>"
-                                    class="btn sm">Edit</a> <a
-                                    href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>"
-                                    class="btn sm danger">Delete</a></td>
+                            <td align="center"><a href="<?= ROOT_URL ?>admin/admin-edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Edit</a> <a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Delete</a></td>
                         </tr>
                     <?php endwhile ?>
                 </tbody>

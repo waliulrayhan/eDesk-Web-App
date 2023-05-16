@@ -10,12 +10,32 @@ $offices = mysqli_query($connection, $query);
 
 
 <section class="dashboard">
-    <?php if (isset($_SESSION['edit-office-success'])): // shows if add post was successful 
-            ?>
+    <?php if (isset($_SESSION['edit-office-success'])) : // shows if add post was successful 
+    ?>
         <div class="alert__message success container">
             <p>
                 <?= $_SESSION['edit-office-success'];
                 unset($_SESSION['edit-office-success']);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
+    <?php if (isset($_SESSION['add-office-success'])) : // shows if add post was successful 
+    ?>
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION['add-office-success'];
+                unset($_SESSION['add-office-success']);
+                ?>
+            </p>
+        </div>
+    <?php endif ?>
+    <?php if (isset($_SESSION['delete-category-success'])) :  // shows if delete post was successful 
+    ?>
+        <div class="alert__message success container">
+            <p>
+                <?= $_SESSION['delete-category-success'];
+                unset($_SESSION['delete-category-success']);
                 ?>
             </p>
         </div>
@@ -68,23 +88,20 @@ $offices = mysqli_query($connection, $query);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($office = mysqli_fetch_assoc($offices)): ?>
+                    <?php while ($office = mysqli_fetch_assoc($offices)) : ?>
                         <tr>
                             <td>
                                 <?= $office['title'] ?>
                             </td>
                             <td>
                                 <?php $len = strlen($office['description']); ?>
-                                <?php if ($len < 30): ?>
+                                <?php if ($len < 30) : ?>
                                     <?= $office['description'] ?>
-                                <?php else: ?>
+                                <?php else : ?>
                                     <?= substr($office['description'], 0, 25) ?>...
                                 <?php endif ?>
                             </td>
-                            <td align="center"><a href="<?= ROOT_URL ?>admin/edit-office.php?id=<?= $office['id'] ?>"
-                                    class="btn sm">Edit</a> <a
-                                    href="<?= ROOT_URL ?>admin/delete-user-logic.php?id=<?= $office['id'] ?>"
-                                    class="btn sm danger">Delete</a></td>
+                            <td align="center"><a href="<?= ROOT_URL ?>admin/edit-office.php?id=<?= $office['id'] ?>" class="btn sm">Edit</a> <a href="<?= ROOT_URL ?>admin/delete-office.php?id=<?= $office['id'] ?>" class="btn sm danger">Delete</a></td>
                         </tr>
                     <?php endwhile ?>
                 </tbody>

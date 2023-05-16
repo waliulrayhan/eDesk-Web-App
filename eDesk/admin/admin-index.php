@@ -2,7 +2,7 @@
 include 'partials/header.php';
 
 // fetch 9 posts from posts table
-$query = "SELECT * FROM post WHERE status='ok' ORDER BY date_time DESC LIMIT 9";
+$query = "SELECT * FROM post WHERE status='Approved' ORDER BY date_time DESC LIMIT 9";
 $posts = mysqli_query($connection, $query);
 
 ?>
@@ -48,10 +48,10 @@ $posts = mysqli_query($connection, $query);
                         </h4>
 
                         <?php $len = strlen($post['body']); ?>
-                        <?php if ($len < 150): ?>
+                        <?php if ($len < 30): ?>
                             <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>"><?= $post['body'] ?></a>
                         <?php else: ?>
-                            <?= substr($post['body'], 0, 150) ?>
+                            <?= substr($post['body'], 0, 30) ?>
                             <h5>
                                 <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">See more...</a>
                             </h5>
@@ -90,10 +90,10 @@ $posts = mysqli_query($connection, $query);
                     </h4>
 
                     <?php $len = strlen($post['body']); ?>
-                    <?php if ($len < 150): ?>
+                    <?php if ($len < 30): ?>
                         <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>"><?= $post['body'] ?></a>
                     <?php else: ?>
-                        <?= substr($post['body'], 0, 150) ?>
+                        <?= substr($post['body'], 0, 30) ?>
                         <h5>
                             <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">See more...</a>
                         </h5>

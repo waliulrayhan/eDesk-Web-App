@@ -28,8 +28,8 @@ require 'config/database.php';
         <div class="container nav__container">
             <a href="<?= ROOT_URL ?>admin/admin-index.php" class="nav__logo">e-Desk</a>
             <ul class="nav__items">
-                <li><a href="<?= ROOT_URL ?>about.php">About</a></li>
-                <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
+                <li><a href="<?= ROOT_URL ?>admin/about.php">About</a></li>
+                <li><a href="<?= ROOT_URL ?>admin/contact.php">Contact</a></li>
                 <li><a href="#">Welcome Admin!</a></li>
                 <li class="nav__profile">
                     <div class="avatar">
@@ -37,7 +37,7 @@ require 'config/database.php';
                     </div>
                     <ul>
                         <li><a href="<?= ROOT_URL ?>admin/admin-manage-post.php">Dashboard</a></li>
-                        <li><a href="<?= ROOT_URL ?>logout.php">Logout</a></li>
+                        <li><a href="<?= ROOT_URL ?>admin/logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>

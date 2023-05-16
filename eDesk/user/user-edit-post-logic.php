@@ -61,14 +61,14 @@ if (isset($_POST['submit'])) {
         // set picture name if a new one was uploaded, else keep the old picture name
         $picture_to_insert = $picture_name ?? $previous_picture_name;
 
-        $query = "UPDATE post SET title='$title', body='$body', picture='$picture_to_insert', office_id=$category_id, status='pending' WHERE id=$id LIMIT 1";
+        $query = "UPDATE post SET title='$title', body='$body', picture='$picture_to_insert', office_id=$category_id, status='Pending' WHERE id=$id LIMIT 1";
         $result = mysqli_query($connection, $query);
     }
 
     if (!mysqli_errno($connection)) {
-        $_SESSION['edit-post-success'] = "Post updated successfully";
+        $_SESSION['edit-post-success'] = "Post updated request successfully";
     }
 }
 
-header('location: ' . ROOT_URL . 'user/user-index.php');
+header('location: ' . ROOT_URL . 'user/user-dashboard.php');
 die();

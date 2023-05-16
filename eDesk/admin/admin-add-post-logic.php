@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
     } else {
 
         // insert post into database
-        $query = "INSERT INTO post (title, body, picture, office_id, author_id, type) VALUES ('$title', '$body', '$picture_name', '$category_id', '$author_id', 'Admin')";
+        $query = "INSERT INTO post (title, body, picture, office_id, author_id, type, post_type, status) VALUES ('$title', '$body', '$picture_name', '$category_id', '$author_id', 'Admin: A-', 'Admin', 'Approved')";
         $result = mysqli_query($connection, $query);
 
         if (!mysqli_errno($connection)) {

@@ -51,11 +51,11 @@ if (isset($_POST['submit'])) {
     } else {
 
         // insert post into database
-        $query = "INSERT INTO post (title, body, picture, office_id, user_id, type, status, post_type) VALUES ('$title', '$body', '$picture_name', '$category_id', '$author_id', 'Request: R-', 'pending', 'Request')";
+        $query = "INSERT INTO post (title, body, picture, office_id, user_id, type, status, post_type) VALUES ('$title', '$body', '$picture_name', '$category_id', '$author_id', 'Request: R-', 'Pending', 'Request')";
         $result = mysqli_query($connection, $query);
 
         if (!mysqli_errno($connection)) {
-            $_SESSION['user-request-success'] = "New request post added successfully";
+            $_SESSION['user-request-success'] = "New request post request added successfully. Post is under Admin Approval";
             header('location: ' . ROOT_URL . 'user/user-dashboard.php');
             die();
         }

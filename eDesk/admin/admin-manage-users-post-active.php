@@ -12,7 +12,7 @@ if(isset($_GET['id'])) {
     // make sure we got back only one post
     if(mysqli_num_rows($result) == 1) {
 
-        $active_post_query = "UPDATE post SET status = 'ok' WHERE id =$id";
+        $active_post_query = "UPDATE post SET status = 'Approved' WHERE id =$id";
     
         $active_post_result = mysqli_query($connection, $active_post_query);
         if(mysqli_errno($connection)) {
