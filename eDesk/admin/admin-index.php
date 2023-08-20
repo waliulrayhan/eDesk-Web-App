@@ -1,8 +1,8 @@
 <?php
 include 'partials/header.php';
 
-// fetch 9 posts from posts table
-$query = "SELECT * FROM post WHERE status='Approved' ORDER BY date_time DESC LIMIT 9";
+// fetch 50 posts from posts table
+$query = "SELECT * FROM post WHERE status='Approved' ORDER BY date_time DESC LIMIT 50";
 $posts = mysqli_query($connection, $query);
 
 ?>
@@ -19,7 +19,7 @@ $posts = mysqli_query($connection, $query);
         <?php while ($post = mysqli_fetch_assoc($posts)): ?>
             <article class="post">
                 <div class="post__thumbnail">
-                    <img src="<?= ROOT_URL . 'images/' . $post['picture'] ?>" width="400" height="200">
+                    <img src="<?= ROOT_URL . 'images/' . $post['picture'] ?>" width="400" height="250">
                 </div>
                 <div class="post__info">
                     <?php
@@ -48,10 +48,10 @@ $posts = mysqli_query($connection, $query);
                         </h4>
 
                         <?php $len = strlen($post['body']); ?>
-                        <?php if ($len < 30): ?>
+                        <?php if ($len < 250): ?>
                             <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>"><?= $post['body'] ?></a>
                         <?php else: ?>
-                            <?= substr($post['body'], 0, 30) ?>
+                            <?= substr($post['body'], 0, 250) ?>
                             <h5>
                                 <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">See more...</a>
                             </h5>
@@ -90,10 +90,10 @@ $posts = mysqli_query($connection, $query);
                     </h4>
 
                     <?php $len = strlen($post['body']); ?>
-                    <?php if ($len < 30): ?>
+                    <?php if ($len < 250): ?>
                         <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>"><?= $post['body'] ?></a>
                     <?php else: ?>
-                        <?= substr($post['body'], 0, 30) ?>
+                        <?= substr($post['body'], 0, 250) ?>
                         <h5>
                             <a href="<?= ROOT_URL ?>admin/details-post.php?id=<?= $post['id'] ?>">See more...</a>
                         </h5>

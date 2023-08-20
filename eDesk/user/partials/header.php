@@ -20,7 +20,7 @@ if (isset($_SESSION['user-id'])) {
     <title>e-Desk | All solusions in one platform</title>
 
     <!-- CUSTOM STYLESHEET -->
-    <link rel="stylesheet" href="<?= ROOT_URL ?>css/style.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>user/css/style.css">
 
     <!-- ICONSCOUT CDN -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">

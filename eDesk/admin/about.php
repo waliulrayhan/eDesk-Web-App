@@ -38,6 +38,10 @@ include 'partials/header.php';
 
         <p>We believe that effective complaint management leads to improved customer satisfaction and better service delivery. Our system aims to provide a transparent and efficient platform for users to voice their concerns and contribute to the improvement of our services. Thank you for choosing our Complaint Management System. We are committed to continuously enhancing our platform to meet your needs. If you have any questions or feedback, please don't hesitate to contact us.</p>
     </div>
+    <br />
+    <br />
+    <br />
+
 </section>
 
 <footer>

@@ -4,7 +4,7 @@ include 'partials/header.php';
 // fetch users from database but not current user
 // $current_admin_id = $_SESSION['user-id'];
 
-$query = "SELECT * FROM usermanagement";
+$query = "SELECT * FROM usermanagement WHERE stat='pending' or stat='deactive'";
 $users = mysqli_query($connection, $query);
 ?>
 

@@ -3,7 +3,7 @@ include 'partials/header.php';
 
 // fetch current user's posts from database
 $current_user_id = $_SESSION['admin-id'];
-$query = "SELECT id, title, office_id, body, status, type, post_type FROM post WHERE user_id != 0 ORDER BY status DESC;";
+$query = "SELECT id, title, office_id, body, status, type, post_type FROM post WHERE user_id != 0 and status='Pending' ORDER BY status DESC;";
 $posts = mysqli_query($connection, $query);
 ?>
 

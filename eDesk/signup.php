@@ -30,6 +30,11 @@ unset($_SESSION['signup-data']);
         <form action="<?= ROOT_URL ?>signup-logic.php" enctype="multipart/form-data" method="POST">
             <input type="text" name="firstname" value="<?= $firstname ?>" placeholder="First Name">
             <input type="text" name="lastname" value="<?= $lastname ?>" placeholder="Last Name">
+
+            <input type="text" placeholder="HSC Roll">
+            <input type="text" placeholder="SSC Roll">
+
+
             <input type="text" name="userid" value="<?= $userid ?>" placeholder="User ID">
             <input type="email" name="email" value="<?= $email ?>" placeholder="Email">
             <input type="password" name="password" value="<?= $password ?>" placeholder="Create Password">

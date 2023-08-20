@@ -30,13 +30,14 @@ require 'config/database.php';
             <ul class="nav__items">
                 <li><a href="<?= ROOT_URL ?>admin/about.php">About</a></li>
                 <li><a href="<?= ROOT_URL ?>admin/contact.php">Contact</a></li>
-                <li><a href="#">Welcome Admin!</a></li>
+                <li><a href="#">Welcome Sajeeb Saha!</a></li>
                 <li class="nav__profile">
                     <div class="avatar">
-                        <img src="<?= ROOT_URL . 'images/rayhan.jpg' ?>">
+                        <img src="<?= ROOT_URL . 'images/Sajeeb Saha.jpg' ?>">
                     </div>
                     <ul>
                         <li><a href="<?= ROOT_URL ?>admin/admin-manage-post.php">Dashboard</a></li>
+                        <li><a href="<?= ROOT_URL ?>admin/graph.php">Statistics</a></li>
                         <li><a href="<?= ROOT_URL ?>admin/logout.php">Logout</a></li>
                     </ul>
                 </li>

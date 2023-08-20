@@ -82,7 +82,7 @@ $offices = mysqli_query($connection, $query);
             <table id='table'>
                 <thead>
                     <tr align="center">
-                        <th>Title</th>
+                        <th>Office Name</th>
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
@@ -95,10 +95,10 @@ $offices = mysqli_query($connection, $query);
                             </td>
                             <td>
                                 <?php $len = strlen($office['description']); ?>
-                                <?php if ($len < 30) : ?>
+                                <?php if ($len < 70) : ?>
                                     <?= $office['description'] ?>
                                 <?php else : ?>
-                                    <?= substr($office['description'], 0, 25) ?>...
+                                    <?= substr($office['description'], 0, 70) ?>...
                                 <?php endif ?>
                             </td>
                             <td align="center"><a href="<?= ROOT_URL ?>admin/edit-office.php?id=<?= $office['id'] ?>" class="btn sm">Edit</a> <a href="<?= ROOT_URL ?>admin/delete-office.php?id=<?= $office['id'] ?>" class="btn sm danger">Delete</a></td>
