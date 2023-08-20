@@ -1,7 +1,7 @@
 <footer>
 
     <div class="footer__copyright">
-        <small>Copyright &copy; 2023 | Team Prefetch | All rights reserved</small>
+        <small>Copyright &copy; 2023 | Developed by Team Prefetch | All rights reserved</small>
     </div>
 </footer>
 

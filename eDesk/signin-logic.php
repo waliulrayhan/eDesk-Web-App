@@ -52,7 +52,14 @@ if (isset($_POST['submit'])) {
             // echo $_SESSION['user_is_user'];
             // echo $_SESSION['user_is_admin'];
 
-            header('location: ' . ROOT_URL . 'admin/admin-index.php');
+            if($user_record['id']==1){
+                header('location: ' . ROOT_URL . 'admin/admin-index.php');
+            }
+            else{
+                header('location: ' . ROOT_URL . 'proctor/admin-index.php');
+            }
+
+            // header('location: ' . ROOT_URL . 'admin/admin-index.php');
         } else {
             $_SESSION['signin'] = "User not found";
         }

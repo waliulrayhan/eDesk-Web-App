@@ -8,6 +8,8 @@ $query = "SELECT * FROM usermanagement WHERE stat='pending' or stat='deactive'";
 $users = mysqli_query($connection, $query);
 ?>
 
+<br />
+<br />
 
 <section class="dashboard">
     <?php if (isset($_SESSION['active-user-success'])) :  // shows if add post was successful 
@@ -82,7 +84,7 @@ $users = mysqli_query($connection, $query);
                 <thead>
                     <tr align="center">
                         <th>Name</th>
-                        <th>UserID</th>
+                        <th>User ID</th>
                         <th>Email</th>
                         <th>Status</th>
                         <th>Action</th>

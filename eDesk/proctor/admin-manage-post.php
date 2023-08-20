@@ -2,8 +2,8 @@
 include 'partials/header.php';
 
 // fetch current user's posts from database
-$current_user_id = $_SESSION['user-id'];
-$query = "SELECT id, title, office_id, body, post_type, status FROM post WHERE user_id=$current_user_id ORDER BY id DESC";
+$current_user_id = $_SESSION['admin-id'];
+$query = "SELECT id, title, office_id, body, type, post_type FROM post WHERE author_id=$current_user_id ORDER BY id DESC";
 $posts = mysqli_query($connection, $query);
 ?>
 
@@ -11,33 +11,12 @@ $posts = mysqli_query($connection, $query);
 <br />
 
 <section class="dashboard">
-
-    <?php if (isset($_SESSION['user-complain-success'])) : // shows if add post was successful 
+    <?php if (isset($_SESSION['add-post-success'])) : // shows if add post was successful 
     ?>
         <div class="alert__message success container">
             <p>
-                <?= $_SESSION['user-complain-success'];
-                unset($_SESSION['user-complain-success']);
-                ?>
-            </p>
-        </div>
-    <?php endif ?>
-    <?php if (isset($_SESSION['user-suggestion-success'])) : // shows if add post was successful 
-    ?>
-        <div class="alert__message success container">
-            <p>
-                <?= $_SESSION['user-suggestion-success'];
-                unset($_SESSION['user-suggestion-success']);
-                ?>
-            </p>
-        </div>
-    <?php endif ?>
-    <?php if (isset($_SESSION['user-request-success'])) : // shows if add post was successful 
-    ?>
-        <div class="alert__message success container">
-            <p>
-                <?= $_SESSION['user-request-success'];
-                unset($_SESSION['user-request-success']);
+                <?= $_SESSION['add-post-success'];
+                unset($_SESSION['add-post-success']);
                 ?>
             </p>
         </div>
@@ -67,38 +46,47 @@ $posts = mysqli_query($connection, $query);
         <button id="hide__sidebar-btn" class="sidebar__toggle"><i class="uil uil-angle-left-b"></i></button>
         <aside>
             <ul>
+                <!-- <li>
+                    <a href="admin-add-office.php"><i class="uil uil-pen"></i>
+                        <h5>Add Office</h5>
+                    </a>
+                </li> -->
+                <!-- <li>
+                    <a href="admin-user-management.php"><i class="uil uil-postcard"></i>
+                        <h5>User Management</h5>
+                    </a>
+                </li> -->
                 <li>
-                    <a href="user-complain.php"><i class="uil uil-pen"></i>
-                        <h5>Submit a Complain</h5>
+                    <a href="admin-add-post.php"><i class="uil uil-user-plus"></i>
+                        <h5>Add Post</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="user-suggestion.php"><i class="uil uil-postcard"></i>
-                        <h5>Submit a Suggestion</h5>
+                    <a href="admin-manage-post.php"><i class="uil uil-users-alt"></i>
+                        <h5>Manage Your Post</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="user-request.php"><i class="uil uil-user-plus"></i>
-                        <h5>Submit a Request</h5>
+                    <a href="admin-manage-users-post.php"><i class="uil uil-users-alt"></i>
+                        <h5>Manage Users Post</h5>
                     </a>
                 </li>
-                <li>
-                    <a href="user-dashboard.php"><i class="uil uil-postcard"></i>
-                        <h5>Manage Posts</h5>
+                <!-- <li>
+                    <a href="admin-manage-office.php"><i class="uil uil-edit"></i>
+                        <h5>Manage Office</h5>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </aside>
         <main>
-            <h2>Manage Posts</h2>
-            <table id='table'>
+            <h2>Manage Your Own Posts</h2>
+            <table id="table">
                 <thead>
-                    <tr align='center'>
-                        <th>User ID</th>
+                    <tr>
+                        <th>Title</th>
                         <th>Against Office</th>
                         <th>Description</th>
                         <th>Post Type</th>
-                        <th>Update</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -129,10 +117,7 @@ $posts = mysqli_query($connection, $query);
                             <td>
                                 <?= $post['post_type'] ?>
                             </td>
-                            <td>
-                                <?= $post['status'] ?>
-                            </td>
-                            <td align="center"><a href="<?= ROOT_URL ?>user/user-edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Edit</a> <a href="<?= ROOT_URL ?>user/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Delete</a></td>
+                            <td align="center"><a href="<?= ROOT_URL ?>admin/admin-edit-post.php?id=<?= $post['id'] ?>" class="btn sm">Edit</a> <a href="<?= ROOT_URL ?>admin/delete-post.php?id=<?= $post['id'] ?>" class="btn sm danger">Delete</a></td>
                         </tr>
                     <?php endwhile ?>
                 </tbody>
@@ -140,6 +125,18 @@ $posts = mysqli_query($connection, $query);
         </main>
     </div>
 </section>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
 <?php

@@ -1,43 +1,40 @@
 <?php
 include 'partials/header.php';
 
-// fetch offices from database but not current user
+// fetch users from database but not current user
 // $current_admin_id = $_SESSION['user-id'];
 
-$query = "SELECT * FROM adminaddoffice";
-$offices = mysqli_query($connection, $query);
+$query = "SELECT * FROM usermanagement WHERE stat='pending' or stat='deactive'";
+$users = mysqli_query($connection, $query);
 ?>
 
-<br />
-<br />
 
 <section class="dashboard">
-    <?php if (isset($_SESSION['edit-office-success'])) : // shows if add post was successful 
+    <?php if (isset($_SESSION['active-user-success'])) :  // shows if add post was successful 
     ?>
         <div class="alert__message success container">
             <p>
-                <?= $_SESSION['edit-office-success'];
-                unset($_SESSION['edit-office-success']);
+                <?= $_SESSION['active-user-success'];
+                unset($_SESSION['active-user-success']);
                 ?>
             </p>
         </div>
     <?php endif ?>
-    <?php if (isset($_SESSION['add-office-success'])) : // shows if add post was successful 
+    <?php if (isset($_SESSION['deactive-user-success'])) :  // shows if add post was successful 
     ?>
         <div class="alert__message success container">
             <p>
-                <?= $_SESSION['add-office-success'];
-                unset($_SESSION['add-office-success']);
+                <?= $_SESSION['deactive-user-success'];
+                unset($_SESSION['deactive-user-success']);
                 ?>
             </p>
         </div>
     <?php endif ?>
-    <?php if (isset($_SESSION['delete-category-success'])) :  // shows if delete post was successful 
-    ?>
-        <div class="alert__message success container">
+    <?php if (isset($_SESSION['delete-user-success'])) : ?>
+        <div class="alert__message error">
             <p>
-                <?= $_SESSION['delete-category-success'];
-                unset($_SESSION['delete-category-success']);
+                <?= $_SESSION['delete-user-success'];
+                unset($_SESSION['delete-user-success']);
                 ?>
             </p>
         </div>
@@ -80,30 +77,25 @@ $offices = mysqli_query($connection, $query);
             </ul>
         </aside>
         <main>
-            <h2>Manage office</h2>
+            <h2>User Management</h2>
             <table id='table'>
                 <thead>
                     <tr align="center">
-                        <th>Office Name</th>
-                        <th>Description</th>
+                        <th>Name</th>
+                        <th>UserID</th>
+                        <th>Email</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($office = mysqli_fetch_assoc($offices)) : ?>
+                    <?php while ($user = mysqli_fetch_assoc($users)) : ?>
                         <tr>
-                            <td>
-                                <?= $office['title'] ?>
-                            </td>
-                            <td>
-                                <?php $len = strlen($office['description']); ?>
-                                <?php if ($len < 70) : ?>
-                                    <?= $office['description'] ?>
-                                <?php else : ?>
-                                    <?= substr($office['description'], 0, 70) ?>...
-                                <?php endif ?>
-                            </td>
-                            <td align="center"><a href="<?= ROOT_URL ?>admin/edit-office.php?id=<?= $office['id'] ?>" class="btn sm">Edit</a> <a href="<?= ROOT_URL ?>admin/delete-office.php?id=<?= $office['id'] ?>" class="btn sm danger">Delete</a></td>
+                            <td><?= "{$user['firstname']} {$user['lastname']}" ?></td>
+                            <td><?= $user['userid'] ?></td>
+                            <td><?= $user['email'] ?></td>
+                            <td><?= $user['stat'] ?></td>
+                            <td align="center"><a href="<?= ROOT_URL ?>admin/active-user-logic.php?id=<?= $user['id'] ?>" class="btn sm">Activate</a> <a href="<?= ROOT_URL ?>admin/deactive-user-logic.php?id=<?= $user['id'] ?>" class="btn sm">Deactivate</a>   <a href="<?= ROOT_URL ?>admin/delete-user-logic.php?id=<?= $user['id'] ?>" class="btn sm danger">Delete</a></td>
                         </tr>
                     <?php endwhile ?>
                 </tbody>

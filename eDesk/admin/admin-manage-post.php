@@ -7,6 +7,8 @@ $query = "SELECT id, title, office_id, body, type, post_type FROM post WHERE aut
 $posts = mysqli_query($connection, $query);
 ?>
 
+<br />
+<br />
 
 <section class="dashboard">
     <?php if (isset($_SESSION['add-post-success'])) : // shows if add post was successful 
@@ -83,7 +85,7 @@ $posts = mysqli_query($connection, $query);
                     <tr>
                         <th>Title</th>
                         <th>Against Office</th>
-                        <th>Descriprion</th>
+                        <th>Description</th>
                         <th>Post Type</th>
                         <th>Action</th>
                     </tr>

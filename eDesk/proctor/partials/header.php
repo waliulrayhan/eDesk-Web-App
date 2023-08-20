@@ -26,20 +26,19 @@ require 'config/database.php';
 <body>
     <nav>
         <div class="container nav__container">
-            <a href="<?= ROOT_URL ?>admin/admin-index.php" class="nav__logo">e-Desk</a>
+            <a href="<?= ROOT_URL ?>proctor/admin-index.php" class="nav__logo">e-Desk</a>
             <ul class="nav__items">
-                <li><a href="<?= ROOT_URL ?>admin/about.php">About</a></li>
-                <li><a href="<?= ROOT_URL ?>admin/contact.php">Contact</a></li>
-                <li><a href="#">Welcome Sajeeb Saha!</a></li>
+                <li><a href="<?= ROOT_URL ?>proctor/about.php">About</a></li>
+                <li><a href="<?= ROOT_URL ?>proctor/contact.php">Contact</a></li>
+                <li><a href="#">Welcome Mostofa Kamal!</a></li>
                 <li class="nav__profile">
                     <div class="avatar">
-                        <img src="<?= ROOT_URL . 'images/Sajeeb Saha.jpg' ?>">
+                        <img src="<?= ROOT_URL . 'images/Mostofa Kamal.jpg' ?>">
                     </div>
                     <ul>
-                        <li><a href="<?= ROOT_URL ?>admin/admin-manage-users-post.php">Dashboard</a></li>
-                        <li><a href="<?= ROOT_URL ?>admin/graph.php">Statistics</a></li>
-                        <li><a href="<?= ROOT_URL ?>admin/Add-admin.php">Admin Management</a></li>
-                        <li><a href="<?= ROOT_URL ?>admin/logout.php">Logout</a></li>
+                        <li><a href="<?= ROOT_URL ?>proctor/admin-manage-users-post.php">Dashboard</a></li>
+                        <li><a href="<?= ROOT_URL ?>proctor/graph.php">Statistics</a></li>
+                        <li><a href="<?= ROOT_URL ?>proctor/logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>

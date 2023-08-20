@@ -8,8 +8,6 @@ $query = "SELECT * FROM adminaddoffice";
 $offices = mysqli_query($connection, $query);
 ?>
 
-<br />
-<br />
 
 <section class="dashboard">
     <?php if (isset($_SESSION['edit-office-success'])) : // shows if add post was successful 

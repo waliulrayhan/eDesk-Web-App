@@ -8,6 +8,9 @@ $posts = mysqli_query($connection, $query);
 ?>
 
 
+<br />
+<br />
+
 <section class="dashboard">
     <?php if (isset($_SESSION['add-post-success'])) : // shows if add post was successful 
     ?>
@@ -83,7 +86,7 @@ $posts = mysqli_query($connection, $query);
                     <tr align="center">
                         <th>User ID</th>
                         <th>Against Office</th>
-                        <th>Descriprion</th>
+                        <th>Description</th>
                         <th>Post Type</th>
                         <th>Status</th>
                         <th>Action</th>
