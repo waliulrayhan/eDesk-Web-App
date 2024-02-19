@@ -34,8 +34,8 @@ To use the project, you can either sign in as a user, an admin, or an office-spe
 </tr>
 <tr>
 <td>User</td>
-<td>user1</td>
-<td>user1</td>
+<td>B190305034</td>
+<td>12345678</td>
 </tr>
 <tr>
 <td>Admin</td>
