@@ -56,8 +56,3 @@ After signing in, you can access the features of each module as described in the
 <p>
 This project is licensed under the MIT License - see the <a href="https://github.com/waliulrayhan/eDesk-Web-php/blob/main/LICENSE">LICENSE</a> file for details.
 </p>
-
-<h2>Acknowledgements</h2>
-<p>
-This project was created with the help of Copilot, an AI companion that helps with coding and other tasks.
-</p>
