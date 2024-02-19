@@ -1,8 +1,5 @@
-# eDesk-Web-php
- This is a Complete Web App Project using php for Complete Online Complain, Suggestion, Request and many more feature for any organization transparency System.
-
 <h1 align="center">eDesk-Web-App</h1>
-<p align="center">A web application for managing office complaints, suggestions, and requests.</p>
+<p align="center">This is a Complete Web App Project using PHP for Complete Online Complaints, Suggestions, Requests, and many more features for any organization's transparency System.</p>
 
 <h2>Introduction</h2>
 <p>
