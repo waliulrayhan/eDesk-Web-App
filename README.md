@@ -6,6 +6,9 @@
 eDesk-Web-App is a comprehensive project that allows users, admins, and office-specific admins to interact and communicate with each other. Users can submit complaints, suggestions, or requests related to their office. Admins can manage offices, users, and posts. Office-specific admins can manage users and posts within their office. The application also provides features such as authentication, media handling, notification system, dashboard, search and filtering, reporting, responsive design, and security measures.
 </p>
 
+<h2>Screenshot</h2>
+![image](https://github.com/user-attachments/assets/9fdbd5b8-1fae-4a18-bc11-37206ac89477)
+
 <h2>Installation</h2>
 <p>
 To install and run the project, follow these steps:
