@@ -8,6 +8,7 @@ eDesk-Web-App is a comprehensive project that allows users, admins, and office-s
 
 <h2>Screenshot</h2>
 ![image](https://github.com/user-attachments/assets/9fdbd5b8-1fae-4a18-bc11-37206ac89477)
+![Picture1](https://github.com/user-attachments/assets/08e5c6fe-e3dd-4054-a129-73a3150d8075)
 
 <h2>Installation</h2>
 <p>
